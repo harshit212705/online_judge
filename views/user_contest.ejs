@@ -1,0 +1,93 @@
+<%-include('headheader');-%>
+    <!-- css link -->
+    <link rel="stylesheet" href="/css/user_contest.css">
+    <%-include('footheader');-%>
+        <!-- log-container -->
+        <div class="log-container">
+            <div class="d-flex flex-row-reverse">
+                <div class="col-sm-2"> <a class="btn btn-primary" href='/compete/create_contest'>Create contest</a></div>
+            </div>
+
+        </div>
+
+        <div class="table-container">
+            <h4 class="text-center py-4"><span>Present Contests</span></h4>
+            <!-- table for present contest -->
+            <%if(message1){%>
+                <div class="addscroll">
+                    <table class="table table-bordered table-hover common-pad">
+                        <thead>
+                            <tr classs="text-center">
+                                <th scope="col">contest name</th>
+                                <th scope="col">organization name</th>
+                                <th scope="col">start date</th>
+                                <th scope="col">start time</th>
+                                <th scope="col">end date</th>
+                                <th scope="col">end time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                                <%-message1%> 
+                        </tbody>
+                    </table>
+                </div>
+            
+            
+            <%}else{%>
+                <p>No more present contests</p>
+            <%}%>    
+            <h4 class="text-center py-4"><span>Future Contests</span></h4>
+            <!-- table for future contest -->
+            <%if(message2){%>
+                <div class="addscroll">
+                    <table class="table table-bordered table-hover commom-pad">
+                        <thead>
+                            <tr>
+                                <th scope="col">contest name</th>
+                                <th scope="col">organization name</th>
+                                <th scope="col">start date</th>
+                                <th scope="col">start time</th>
+                                <th scope="col">end date</th>
+                                <th scope="col">end time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                                <%-message2%>
+                        </tbody>
+                    </table>
+                </div>
+            
+            
+            <%}else{%>
+                <p>No more future contests</p>
+            <%}%>  
+
+            <h4 class="text-center py-4"><span>Past Contests</s></h4>
+                 <!-- table for past contest -->
+            <%if(message3){%>
+                <div class="addscroll">
+                    <table class="table table-bordered table-hover common-pad">
+                        <thead>
+                            <tr>
+                                <th scope="col">contest name</th>
+                                <th scope="col">organization name</th>
+                                <th scope="col">start date</th>
+                                <th scope="col">start time</th>
+                                <th scope="co">end date</th>
+                                <th scope="col">end time</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                                <%-message3%>   
+                        </tbody>
+                    </table>
+                </div>
+            
+            
+            <%}else{%>
+                <p>No more past contests</p>
+            <%}%>  
+        </div>
+
+        <%-include('headfooter');-%>
+        <%-include('footfooter');-%>

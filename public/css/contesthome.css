@@ -1,0 +1,73 @@
+body {
+    background-color: #e0e0e0;
+}
+
+.contest_home>.row {
+    margin-right: 0;
+}
+
+.contest_home {
+    margin: 7% 0;
+    font-size: 1.2rem;
+}
+
+
+/* cards */
+
+.card {
+    box-shadow: 0.2em 0.2em 0.3em rgba(0, 0, 0, 0.3);
+}
+
+.card-body {
+    padding: 8% 8%;
+}
+
+.card-header {
+    background-color: #6c757d;
+}
+
+
+/* textarea */
+
+textarea {
+    resize: none;
+}
+
+
+/* navigation bar */
+
+
+
+.navbg {
+    font-size: 1.2rem;
+    margin: 3% 0%;
+}
+
+.navbg:hover {
+    background-color: #63707e !important;
+}
+
+@media (max-width:700px) {
+    .navbar-toggler-icon {
+        color: black !important;
+        z-index: 1;
+    }
+    .navit {
+        margin-left: 0%;
+        margin-right: 0%;
+    }
+    .navbg {
+        font-size: 1rem;
+        text-align: center;
+    }
+    .navpd {
+        padding: 0;
+        background-color: #333333;
+    }
+    .card {
+        margin: 7% 3%;
+    }
+    .col-lg-2 {
+        width: 100%;
+    }
+}

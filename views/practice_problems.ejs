@@ -1,0 +1,37 @@
+<!-- header using ejs -->
+<%-include('headheader');-%>
+    <link rel="stylesheet" href="/css/practice_problems.css">
+    <%-include('footheader');-%>
+        <!-- on page reload it will call the function getproblems() -->
+
+        <!-- link for accessing the leaderboard of a contest -->
+        <div class="d-flex flex-row-reverse py-5">
+            <a class="btn btn-primary mr-3" href="window.location.redirect = window.location.href+/../leaderboard">Go to Leaderboard</a>
+            <a class="btn btn-primary mr-3" href="window.location.redirect = window.location.href+/../submission">Go to Submission</a>
+        </div>
+
+
+        <div class="practice_table">
+            <h4 class="text-center py-3">Practice Problems</h4>
+            <table class="table table-bordered table-hover text-center">
+                <thead>
+                    <tr>
+                        <!-- details to be displayed -->
+                        <th scope="col">Problem Name</th>
+                        <th scope="col">Difficulty</th>
+                        <th scope="col">Points</th>
+                        <th scope="col">Subdomain</th>
+                        
+                    </tr>
+                </thead>
+
+                <!-- here problems will be displayed -->
+                <tbody id="problem-list"> </tbody>
+            </table>
+        </div>
+
+
+
+        <%-include('headfooter');-%>
+            <script src="/js/jpractice_problems.js"></script>
+            <%-include('footfooter');-%>

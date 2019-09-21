@@ -1,0 +1,63 @@
+<%-include('headheader');-%>
+    <link rel="stylesheet" href="/css/add_challenge.css">
+    <%-include('footheadercontest');-%>
+        <!-- adding challenge section -->
+        <div class="challenge_section">
+            <h4 class="text-center py-5 font-weight-bold"> Add challenges here</h4>
+            <!-- button for adding challenges -->
+            <div class="text-center">
+                <button id="exist_challenge" class="btn btn-primary mr-4">Add exising challenge</button>
+                <button id="new_challenge" class="btn btn-primary ml-4">Add new Challenge</button>
+            </div>
+            <!-- search for existing challenges -->
+            <div id='existing_challenge'>
+                <div id="challenges">
+                    <input type="text" class="form-control" id="search_existing" value="" placeholder="Search for problems"><br>
+                    
+                     <ul class="list-group problems">
+
+                     </div>
+                </div>
+            </div>
+            <!-- contest_problem -->
+            <div id="contest_problem">
+                <h4 class="text-center font-weight-bold">Contest Problems</h4>
+                <!-- table for problems of contest -->
+                <table class="table table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">Problem Name</th>
+                            <th scope="col">Subdomain</th>
+                            <th scope="col">Difficulty</th>
+                            <th scope="col">Points</th>
+                        </tr>
+                    </thead>
+                    <tbody id="verified_problems">
+
+                    </tbody>
+
+                </table>
+                <!-- pending problems section -->
+                <h4 class="text-center font-weight-bold">Pending Problems:</h4>
+                <!-- table for pending problems -->
+                <table class="table table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">Problem Name</th>
+                            <th scope="col">Subdomain</th>
+                            <th scope="col">Difficulty</th>
+                            <th scope="col">Points</th>
+                        </tr>
+                    </thead>
+                    <!-- body of the table -->
+                    <tbody id="pending_problems">
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+        <%-include('headfooter');-%>
+            <script src="/js/jadd_challenge.js"></script>
+            <%-include('footfooter');-%>

@@ -1,0 +1,101 @@
+<!-- header using ejs -->
+<%-include('headheader');-%>
+    <!-- css link -->
+    <link rel="stylesheet" href="/css/practice.css">
+    <%-include('footheader');-%>
+
+        <div class="container container-margin">
+            <div class="dropdown">
+
+                <a class="btn btn-secondary btn-lg btn-block"  href = "#collit" role  = "button" data-toggle="collapse" aria-haspopup="true" aria-expanded="false" aria-controls= "collit">
+                      Filter <i class = "fa fa-caret-down ml-2"></i>
+                </a>
+
+                <!-- dropdown filters -->
+                <div class="collapse" id = "collit">
+                    <form>
+                        <div class="dropdown-item bord">
+                            <div class="row">
+                                <!-- status -->
+                                <h5 class="text-muted">Status:</h5>
+                                <div class="col-lg-2 py-4 text-muted">
+                                    <input type="checkbox" class="status" value="1"> Solved<br>
+                                    <input type="checkbox" class="status" value="0"> Unsolved<br>
+                                </div>
+
+                                <!-- difficulty -->
+                                <h5 class="text-muted">Difficulty:</h5>
+                                <div class="col-lg-2 py-4 text-muted">
+                                    <input type="checkbox" class="difficulty" value="easy"> Easy<br>
+                                    <input type="checkbox" class="difficulty" value="medium"> Medium<br>
+                                    <input type="checkbox" class="difficulty" value="hard"> Hard<br>
+                                </div>
+                                <h5 class="text-muted">Subdomain:</h5>
+                                <!-- subdomain -->
+                                <div class="col-lg-2 py-4 text-muted">
+                                    <input type="checkbox" class="subdomain" value="search"> Search<br>
+                                    <input type="checkbox" class="subdomain" value="arrays"> Arrays<br>
+                                    <input type="checkbox" class="subdomain" value="strings"> Strings<br>
+                                    <input type="checkbox" class="subdomain" value="sorting"> Sorting<br>
+                                    <input type="checkbox" class="subdomain" value="recursion"> Recursion<br>
+                                    <input type="checkbox" class="subdomain" value="bitman"> Bit Manipulation<br>
+                                </div>
+                                <div class="col-lg-2 py-4 text-muted">
+
+                                    <input type="checkbox" class="subdomain" value="greedy"> Greedy<br>
+                                    <input type="checkbox" class="subdomain" value="dp"> Dynamic Programming<br>
+                                    <input type="checkbox" class="subdomain" value="graph"> Graph<br>
+                                    <input type="checkbox" class="subdomain" value="game"> Game Theory<br>
+                                    <input type="checkbox" class="subdomain" value="algorithm"> Algorithm<br>
+                                    <input type="checkbox" class="subdomain" value="np"> NP Complete NP Hard<br>
+                                </div>
+                                <div class="col-lg-2">
+                                    <!-- apply button -->
+                                   <button class="btn btn-secondary"  href = "#collit" type = "button" data-toggle="collapse" aria-haspopup="true" aria-expanded="false" aria-controls= "collit" id="apply">Apply Changes</button>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+    <div class="addscroll">
+            <table class="table table-bordered table-hover text-center">
+                    <!-- here problems will be displayed -->
+                    <thead id = "thead">
+                       <tr>
+                         <th scope="col">
+                            Problem Name
+                         </th>
+                         <th scope="col">
+                            Difficulty
+                         </th>
+                         <th scope="col">
+                           Points
+                         </th>
+                         <th scope="col">
+                            Sub Domain
+                         </th>
+                         <th scope="col">
+                            Status
+                         </th>
+                       </tr>
+                    </thead>
+                    <tbody id="problem-list"> 
+                           
+                      </tbody>
+                  </table>
+    </div>
+      
+      <p id = "no_data"></p>
+
+
+        </div>
+        <%-include('headfooter');-%>
+            <script src="/js/jpractice.js"></script>
+
+            <%-include('footfooter');-%>
+
+      

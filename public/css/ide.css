@@ -1,0 +1,59 @@
+body {
+    overflow: auto;
+  }
+
+  #editor {
+    /* position: absolute; */
+    
+    /* width: 60rem;
+    margin: auto;
+    margin-bottom: 20rem; */
+    margin-left: 3%;
+    margin-right: 2%;
+    margin-bottom: 3%;
+    font-family: 'IBM Plex Sans', sans-serif;
+    overflow: hidden;
+
+  }
+/* compiler */
+.contain{
+    margin:7% 17% 7% 6%;
+    background-color:grey;
+}
+
+.defpad{
+    margin:2% 3%;
+}
+
+
+/* css for upper row */
+
+.upperrow {
+    margin: 1% 5%;
+    padding: 1% 1%;
+    
+}
+
+.custom-select:focus {
+    border-color: #d6d6c2;
+    box-shadow: none;
+}
+
+
+
+
+/* font for content in ide */
+
+.fonts {
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+
+.padright {
+    padding-right: 2%;
+}
+
+.contain {
+    border: 1px solid #a3a375;
+}
+
+

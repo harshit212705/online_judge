@@ -1,0 +1,51 @@
+<!-- header using ejs -->
+<%-include('headheader');-%>
+    <!-- css link -->
+    <link rel="stylesheet" href="/css/problem_verification.css">
+    <%-include('footheaderadmin');-%>
+        <div class="cont border padit">
+            <h4 class="font-weight-bold text-center py-4">Problems</h4>
+            <!-- table for problems -->
+            <table class="table table-bordered table-hover text-center">
+                <thead id = "thead">
+                    <tr>
+                      <!-- details to be displayed -->
+                        <th scope="col">Problem Name</th>
+                        <th scope="col">Difficulty</th>
+                        <th scope="col">Subdomain</th>
+                        <th scope="col">Date</th>
+                    </tr>
+                </thead>
+                 <!-- here problems will be displayed -->
+               <tbody id="problem-list">  </tbody>
+            </table>
+            <p id = "no_data"></p>
+
+
+            <!-- pagination details here -->
+            <nav aria-label="Page navigation example">
+                  
+                    <ul class="pagination justify-content-center" id = "arrows">
+                               <ul class="pagination">
+                                    <li class="page-item">
+                                            <a class="page-link" href="#" aria-label="Previous">
+                                              <span aria-hidden="true">&laquo;</span>
+                                            </a>
+                                          </li>
+                               </ul>
+                            <ul class="pagination" id="pagination">
+                                </ul>
+                            <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Next">
+                                      <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                            </li>
+                    </ul>
+            </nav>
+            
+
+        </div>
+
+        <%-include('headfooter');-%>
+            <script src="/js/jproblem_verification.js"></script>
+            <%-include('footfooter');-%>

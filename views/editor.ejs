@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>ACE in Action</title>
+  <style type="text/css" media="screen">
+  /* css to adjust the ace editor */
+    body {
+      overflow: auto;
+    }
+
+    #editor {
+      /* position: absolute; */
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      /* width: 60rem;
+      margin: auto;
+      margin-bottom: 20rem; */
+
+
+    }
+  </style>
+  <link rel="stylesheet" href="/css/ide.css">
+</head>
+    <%-include('headheader');-%>
+<body style = "background-color:#ccffe6;">
+  <div class="contain">
+
+    <div class="row upperrow">
+      <!-- selecting the language -->
+      <div class="col-lg-4">
+        <select class="custom-select" id="language">
+          <option value="c">C</option>
+          <option value="cpp">CPP</option>
+          <option value="csharp">C#</option>
+          <option value="golang">GO</option>
+          <option value="java">JAVA</option>
+          <option value="javascript">JAVASCRIPT</option>
+          <option value="python2">PYTH(2.7)</option>
+          <option value="python3">PYTH(3.6)</option>
+          <option value="ruby">RUBY</option>
+          <option value="rust">RUST</option>
+
+        </select>
+      </div>
+      <div class="col-lg-6">
+        <p class="lead text-center text-white">Enter Your Code here</p>
+      </div>
+      <div class="d-flex justify-content-around">
+        
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+<!-- Setting the the ACE smart ide -->
+    <div id="editor">
+    </div>
+    <!-- Setting the output space / testcase space  -->
+    <div class="d-flex flex-row-reverse">
+        
+        <button class="btn btn-light mr-5" type="button" name="run" onclick="run()" id="runbutton">Run</button>
+      </div>
+    <div class="defpad">
+        <div class="row">
+            <div class="col-lg-6">
+                <textarea name="stdin" rows="8" class="form-control" id="stdin" style="resize:none" placeholder="input"></textarea><br>
+            </div>
+        </div>
+    </div>
+   
+
+    <!-- Setting the output space / testcase space  -->
+
+    <div class="defpad">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="outputspace">
+
+                    <div class="status">
+                
+                    </div>
+                    <div class="time">
+                
+                    </div>
+                    <div class="memory">
+                
+                    </div>
+                    <div class="outut">
+                
+                    </div>
+                    <table class="table table-bordered table-hover bg-light text-center mt-5">
+                         <tbody class="testcasearea">
+
+                         </tbody>    
+                    </table>
+                  </div>
+            </div>
+        </div>
+    </div>
+  </div>
+<!-- script to add the required files  -->
+  <script src="/ace-builds/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+  <!-- script to apply setting of the ACE smart editor -->
+  <script>
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/twilight");
+    editor.session.setMode("ace/mode/c_cpp");
+    editor.resize();
+    editor.setOptions({
+      autoScrollEditorIntoView: true,
+      maxLines: 35,
+      minLines: 25,
+      wrap: true,
+      fontSize: '1rem'
+    });
+    editor.renderer.setScrollMargin(10, 10, 10, 10);
+    document.querySelector("#language").addEventListener("change", function() {
+      var lang = document.querySelector("#language").value
+      if (lang === "c" || lang === "cpp")
+        lang = "c_cpp";
+      else if (lang === "python2" || lang === "python3")
+        lang = "python";
+      editor.session.setMode("ace/mode/" + lang);
+    });
+    document.querySelector("#fontsize").addEventListener("change",function(){
+      var fontsize=document.querySelector("#fontsize").value/16;
+      if(fontsize>=0&&fontsize<=3)
+      {
+        editor.setOptions({
+          fontSize:fontsize+'rem'
+        })
+      }
+    })
+  </script>
+
+
+
+
+
+<!-- script to add functioning of the page -->
+  <script src="/js/jide.js" charset="utf-8"></script>
+  <!-- script to run ,submit and save the code -->
+  <script type="text/javascript">
+  // save the code on pagehide
+window.addEventListener("pagehide",function(){
+      save();
+    },false);
+
+// set the previously typed code in the editor on pageshow
+    window.addEventListener("pageshow",function(){
+      getcurrent();
+    },false);
+// set the previously typed code in the editor on language
+    document.getElementById("language").addEventListener("change",function(){
+      getcurrent();
+      
+    });
+    // save the code on language change
+    document.getElementById("language").addEventListener("focus",function(){
+      save();
+      
+    });
+
+// run the code
+    function run() {
+      if (/\S/.test(editor.getValue())){
+      document.querySelector(".time").innerHTML="";
+      document.querySelector(".memory").innerHTML="";
+      document.querySelector(".outut").innerHTML="";
+      document.querySelector("#runbutton").setAttribute("disabled","");
+      document.querySelector(".status").innerHTML = '<label class="text-white">STATUS:</label><br><textarea name="status" rows="1" cols="30" id="status" readonly style="resize:none">Submission Queued</textarea>';
+
+      var runbody = {
+        source_code: '',
+        language: '',
+        stdin: ''
+      }
+      runbody.source_code = editor.getValue();
+      runbody.language = document.querySelector("#language").value;
+      runbody.stdin = document.querySelector("#stdin").value;
+// AJAX call to the api
+      var xhttp;
+      xhttp = new XMLHttpRequest();
+      xhttp.responseType = "json";
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          var output = this.response;
+          var out = "";
+          var st = output.status.description;
+          switch (output.status.id) {
+            case 3:
+              out =decodeURIComponent(atob(output.stdout).split('').map(function(c) {return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2); }).join(''));
+              break;
+            case 6:
+              out =decodeURIComponent(atob(output.compile_output).split('').map(function(c) {return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2); }).join(''));
+                    break;
+            case 11:
+              out =decodeURIComponent(atob(output.stdout).split('').map(function(c) {return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2); }).join(''));
+          }
+         document.querySelector(".status").innerHTML = '<label class="text-white">STATUS:</label><br><textarea name="status" rows="1" cols="30" id="status" readonly style="resize:none">' + st + '</textarea>';
+         if(output.status.id!==6){
+          document.querySelector(".time").innerHTML = '<label class="text-white">TIME:</label><br><textarea name="time" rows="1" cols="30" id="time" readonly style="resize:none">' + output.time + 'sec</textarea>';
+          document.querySelector(".memory").innerHTML = '<label class="text-white">MEMORY:</label><br><textarea name="memory" rows="1" cols="30" id="memory" readonly style="resize:none">' + output.memory + 'KB</textarea>';
+         }
+          if (out)
+            document.querySelector(".outut").innerHTML = '<label class="text-white">OUTPUT:</label><br><textarea name="stdout" rows="8" class="form-control" id="stdout" readonly style="resize:none">' + out + '</textarea>';
+          
+          save();
+          document.querySelector("#runbutton").removeAttribute("disabled","");
+
+
+
+
+        }
+      };
+
+      xhttp.open("POST", "/editor", true);
+      xhttp.setRequestHeader("Content-Type", "application/json");
+      xhttp.send(JSON.stringify(runbody));
+    }
+  }
+
+  // save the code in the database
+    function save(){
+      var saveobj={
+        submission: editor.getValue(),
+        language:document.querySelector("#language").value,
+        problem_id:0
+
+      }
+      // AJAX call to the api
+      var xhttp;
+      xhttp = new XMLHttpRequest();
+      xhttp.responseType = "json";
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+
+
+        }}
+        xhttp.open("POST", "/editor/save", true);
+        xhttp.setRequestHeader("Content-Type", "application/json");
+        xhttp.send(JSON.stringify(saveobj));
+    }
+    // function to get the previously typed code according to the language 
+    function getcurrent(){
+      var submitobj={
+        problem_id:<%=problem_id%>,
+        language:document.querySelector("#language").value
+      }
+      // AJAX call to the API
+      var xhttp;
+      xhttp = new XMLHttpRequest();
+      xhttp.responseType = "json";
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          if(this.response){  
+          var solution=this.response.solution;
+            editor.setValue(solution);
+        
+        }
+        else{
+          editor.setValue("");
+
+        }
+
+        }}
+
+        xhttp.open("POST", "/editor/getcurrent", true);
+        xhttp.setRequestHeader("Content-Type", "application/json");
+        xhttp.send(JSON.stringify(submitobj));
+    }
+    
+  </script>
+</body>
+<script src="js/jide.js"></script>
+</html>

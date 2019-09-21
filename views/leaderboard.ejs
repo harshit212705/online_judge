@@ -1,0 +1,65 @@
+<!-- header using ejs -->
+<%-include('headheader');-%>
+    <link rel="stylesheet" href="/css/leaderboard.css">
+    <%-include('footheader');-%>
+  <!-- on page load it will call the function leaderboard_change() -->
+  <body onload="leaderboard_change()">
+    <div class="ldtabcont">
+      <h4 class="text-center font-weight-bold">Leaderboard</h4>
+     <div class="addscroll">
+        <table class="table table-bordered table-hover text-center">
+            <thead>
+                <tr>
+                    <!-- details to be displayed -->
+                    <th scope="col">Username</th>
+                    <th scope="col">Points</th>
+                    <th scope="col">Last submission</th>
+                    <%if(message){%>
+                        <%-message%>
+                            <%}%>
+  
+                </tr>
+            </thead>
+            <!-- here users will be displayed -->
+            <tbody id="user-list">
+  
+            </tbody>
+        </table>
+     </div>
+      
+  </div>
+  <%-include('headfooter');-%>
+
+<!-- script starts here -->
+<script type="text/javascript">
+    function leaderboard_change(){
+      var xhttp;
+      xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+      // readystate denotes that the request is completed and the data is received and request is ok for status 200
+      if (this.readyState == 4 && this.status == 200) {
+      //displaying the response coming of the request
+      document.getElementById("user-list").innerHTML = "";
+      var data = JSON.parse(this.response);
+      
+      data.forEach(function(element){
+        var date = new Date(element.datetime);          
+            date = date.toUTCString();
+            date = date.slice(4,26);
+          
+            
+        document.getElementById("user-list").innerHTML += "<tr><td>" + element.username + "</td><td>" + element.points + "</td><td>" + date + "</td>" + element.data + "</tr>"
+      })
+  
+      }
+    };
+  
+  //sending the post ajax request to the same page  
+  xhttp.open("POST", window.location.href, true);
+  xhttp.send();
+}
+// setInterval("leaderboard_change()",1000*60);
+
+
+</script>
+<%-include('footfooter');-%>

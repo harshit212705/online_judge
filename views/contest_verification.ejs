@@ -1,0 +1,50 @@
+<%-include('headheader');-%>
+    <!-- css link -->
+    <link rel="stylesheet" href="/css/contest_verification.css">
+    <%-include('footheaderadmin');-%>
+        <!-- contest verification -->
+        <div class="cont">
+
+            <h4 class="text-center">Contest</h4>
+            <div class="pad-table">
+                <table class="table table-bordered table-hover text-center">
+                    <thead id = "thead"> 
+                        <tr>
+                            <th scope="col">Contest Id</th>
+                            <th scope="col">Contest Name</th>
+
+                        </tr>
+                    </thead>
+
+                    <tbody id="contest-list"> </tbody>
+                </table>
+                <p id = "no_data"></p>
+
+
+                <!-- pagination details here -->
+            <nav aria-label="Page navigation example">
+                  
+                <ul class="pagination justify-content-center" id = "arrows">
+                           <ul class="pagination">
+                                <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Previous">
+                                          <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                      </li>
+                           </ul>
+                        <ul class="pagination" id="pagination">
+                            </ul>
+                        <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Next">
+                                  <span aria-hidden="true">&raquo;</span>
+                                </a>
+                        </li>
+                </ul>
+        </nav>
+
+            </div>
+        </div>
+        <%-include('headfooter');-%>
+            <script src="/js/jcontest_verification.js">
+            </script>
+        <%-include('footfooter');-%>

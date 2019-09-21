@@ -1,0 +1,23 @@
+/* containers */
+
+.admin-home {
+    margin: 6% 15%;
+}
+
+.toppad {
+    padding: 5% 0;
+}
+
+.card {
+    box-shadow: 0.2em 0.2em 0.3em rgba(0, 0, 0, 0.3);
+}
+
+.verify {
+    padding: 3% 25%;
+}
+
+@media(max-width:900px) {
+    .col-lg-5 {
+        margin: 10% 0;
+    }
+}
