@@ -19,4 +19,4 @@ __npm install body-parser compile-run connect-flash cookie-parser ejs express ex
 * Create your __NewsAPI__ API KEY and paste it in __public/js/jnews.js__ file at the mentioned position to get the latest news feeds.
 <br/>
 
-* Practice coding to the fullest and thrive in coding skills. Happy Coding!!
+Practice coding to the fullest and thrive in coding skills. Happy Coding!!
