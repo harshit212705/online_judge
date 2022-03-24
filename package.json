@@ -32,7 +32,7 @@
     "nodemailer": "^6.3.0",
     "path": "^0.12.7",
     "unzip": "^0.1.11",
-    "minimist": ">=0.2.1",
+    "minimist": ">=1.2.6",
     "fstream": ">=1.0.12"
   }
 }
